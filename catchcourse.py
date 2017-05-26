@@ -1,5 +1,6 @@
 import urllib.request as r
 import urllib.parse as p
+from urllib.error import URLError
 import time
 from email.mime.text import MIMEText
 import smtplib
@@ -28,7 +29,7 @@ def sendemail(msg,address,passward):
 
 def takeinput():
     dept = input("department you want: ").strip()
-    number = input("course you wnat: ").strip()
+    number = input("course you want: ").strip()
     paralib['Dept'] = dept
     paralib['CourseNum'] = number
     exclude = input("enter courses numbers you want to exclue (seperate by ,): ").strip()
@@ -38,8 +39,17 @@ def takeinput():
 def getresult():
     d = p.urlencode(paralib)
     d = d.encode("utf8")
-    h = r.Request("https://www.reg.uci.edu/perl/WebSoc",data = d )
-    t = r.urlopen(h)
+    while True:
+        try:
+            h = r.Request("https://www.reg.uci.edu/perl/WebSoc",data = d )
+            t = r.urlopen(h)
+        except URLError:
+            print("Connection Error, Reconnecting...")
+            time.sleep(1)
+        else:
+            break
+
+
     t = t.read().decode("utf8")
     f = open('test.html',mode = 'w')
     f.write(t)
