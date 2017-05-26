@@ -17,6 +17,13 @@ def encodemail(sender,receiver,subject,context):
     res["To"] = receiver
     return res
 
+def sendemail(msg,address,passward):
+    ser = smtplib.SMTP("smtp.gmail.com")
+    ser.starttls()
+    ser.login(address,passward)
+    ser.send_message(msg)
+    ser.quit()
+
 
 
 def takeinput():
@@ -50,22 +57,49 @@ def outtoscreen(ex):
 
     res = open('result.txt')
     status = False
+    reslist = []
     for line in res:
         if 'OPEN' in line:
             start = line.index('nowrap="nowrap">')
             if line[start+len('nowrap="nowrap">'):start+len('nowrap="nowrap">')+5] in ex:
                 continue
             print('{} is OPEN!!'.format(line[start+len('nowrap="nowrap">'):start+len('nowrap="nowrap">')+5]))
+            reslist.append('{} is OPEN!!'.format(line[start+len('nowrap="nowrap">'):start+len('nowrap="nowrap">')+5]))
             status = True
-    return status
+    res.close()
+    return status,reslist
+
+def askemail():
+    while True:
+        check = input("Do you want to receive a email notification(require an email address and password)? (yes or no): ").strip()
+        if check in ['yes','no']:
+            break
+    check = True if check == 'yes' else False
+    if check:
+        a = input("Your email address (must be a Gmail address, @uci.edu is OK): ").strip()
+        p = input("Your password(only used for login to Gmail, we will not receive any message): ")
+        return a,p
+    else:
+        return None
+
 
 def main():
     ex = takeinput()
+    emailinfo = askemail()
+    sendnote = True if emailinfo != None else False
+    lastsent = 0
     count = 1
     while True:
         print("Trying to find course for {} time(s)...".format(count))
         getresult()
         check = outtoscreen(ex)
+
+        if check[0] and sendnote:
+            if count - lastsent >= 10*50 or lastsent == 0:
+                lastsent = count
+                msg = encodemail(emailinfo[0],emailinfo[0],"Your course is available!!",'\n'.join(check[1]))
+                sendemail(msg,emailinfo[0],emailinfo[1])
+
         count += 1
         time.sleep(1)
 
