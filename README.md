@@ -8,7 +8,7 @@ Keep requesting for websoc to check certain course availability (e.g. WRITING 39
 
 The program request every 5 seconds
 
-Weak Error handling now, please make sure your input follows manual below 
+Weak Error handling now, please make sure your input follows prompt and good internet connection 
 
 
 ## IMPORTANT! READ BEFORE USING 
