@@ -1,8 +1,14 @@
 # UCI-course-search-
+## Description 
 A Python program helps check course availability
-Only works for UCI websoc system 
-Keep reqeusting for websoc to check certain course availability (e.g. WRITING 39A) and print avaiable course code to consle.
+Only works for UCI websoc system for Fall 2017 now 
+Keep requesting for websoc to check certain course availability (e.g. WRITING 39A) and print available course code to console and optional email notification.
 The program request every 5 seconds
-No Error handling for this version now
+Weak Error handling now, please make sure your input follows manual below 
 
-User instructions coming soon...
+
+# IMPORTANT READ BEFORE USING 
+- For department name, place make sure your input is same as the name appears in the first column of department name menu in https://www.reg.uci.edu/perl/WebSoc
+- To enable email notification, please allow less secure apps for Gmail account you want to use. Follow this link to process: https://myaccount.google.com/lesssecureapps
+- More features coming. For advice and bug report, feel free to contact me:
+- Email: chenyn66@icloud.com
