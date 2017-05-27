@@ -87,7 +87,7 @@ def askemail():
     check = True if check == 'yes' else False
     if check:
         a = input("Your email address (must be a Gmail address, @uci.edu is OK): ").strip()
-        p = input("Your password(only used for login to Gmail, we will not receive any message): ")
+        p = input("Your password(only used for login to Gmail, I will not receive any message): ")
         return a,p
     else:
         return None
