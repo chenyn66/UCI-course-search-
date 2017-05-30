@@ -12,7 +12,10 @@ Weak Error handling now, please make sure your input follows prompt and good int
 
 
 ## IMPORTANT! READ BEFORE USING 
-- Only supports Python 3.5 now. Development for 3.6 in progress
+- For Python 3.6 on MAC:
+1. Open Applications in Finder 
+2. Find Python 3.6 folder and double click
+3. Double click Install Certificates.command (https://i.stack.imgur.com/bWgpe.png)
 - For department name, place make sure your input is exactly the same as the name appears in the first column of department name menu in https://www.reg.uci.edu/perl/WebSoc e.g. I&C SCI for Information and Computer Science
 - To enable email notification, please allow less secure apps for Gmail account you want to use. Follow this link to process: https://myaccount.google.com/lesssecureapps
 - Due to system limitation, this program can not run during computer sleeping. For best reuslt, try to change power setting or keep the computer on.
