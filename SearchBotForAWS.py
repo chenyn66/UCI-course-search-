@@ -9,7 +9,6 @@ import smtplib
 
 def lambda_handler(event, context):
     # TODO implement
-    print(event)
     Res = SearchBot(event['args'],event['include'],event['exclude'],event['rstr'],event['MailInfo'])
     Res.runOnetime()
     
@@ -130,6 +129,7 @@ class SearchBot:
             msgList = ['{} is OPEN!!'.format(i) for i in Res]
             msg = self._encodeMail("Your course is available!!",'\n'.join(msgList))
             self._sendMail(msg)
+        return Res
 
     def run(self):
         sendnote = True if self._Mail != None else False
